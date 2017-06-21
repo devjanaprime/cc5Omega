@@ -40,12 +40,12 @@ Create a POST for your index route and make sure it is receiving data correctly.
 Part 2: setting up Mongo
 ---
 
-Create a user model in ```models/user.js```:
+Create a user model in ```modules/user.js```:
 
 ```
 var mongoose = require( 'mongoose' );
 
-mongoose.connect( 'localhost:27017/users' );
+mongoose.connect( 'localhost:27017/omegaMessages' );
 var userSchema = new mongoose.Schema({
   username: String,
   password: String

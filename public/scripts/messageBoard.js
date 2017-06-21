@@ -24,8 +24,17 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
 
   vm.register = function(){
     console.log( 'in controller register' );
-    MessageBoardService.sendRegister();
-  };
+    // assemble credentialsObject
+    var creds = {
+      username: vm.usernameRegister,
+      password: vm.passwordRegister
+    };
+    MessageBoardService.sendRegister( creds ).then( function(){
+      //clear out inputs when returned from register call
+      vm.usernameRegister = '';
+      vm.passwordRegister = '';
+    }); //end service call
+  }; /// end register
 
   vm.sendMessage = function(){
     // used to toggle name input

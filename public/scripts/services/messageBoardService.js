@@ -27,12 +27,9 @@ myApp.service( 'MessageBoardService', function( $http ){
     }); // end http
   };
 
-  sv.sendRegister = function(){
+  sv.sendRegister = function( credentials ){
     console.log( 'in service sendRegister' );
-    var credentials = {
-      username: 'Natasha',
-      password: 'Fatale'
-    };
+    // removed temp data
     return $http({
       method: 'POST',
       url: '/register',
