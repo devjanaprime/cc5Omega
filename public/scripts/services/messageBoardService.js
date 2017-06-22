@@ -12,12 +12,8 @@ myApp.service( 'MessageBoardService', function( $http ){
     }); // end http
   }; //end retrieveMessages
 
-  sv.sendLogIn = function(){
+  sv.sendLogIn = function( credentials ){
     console.log( 'in service sendLogIn' );
-    var credentials = {
-      username: 'Boris',
-      password: 'Karkoff'
-    };
     return $http({
       method: 'POST',
       url: '/',

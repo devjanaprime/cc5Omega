@@ -10,7 +10,11 @@
   <body ng-app='myApp'>
     <h1>Omega Message Board</h1>
     <div ng-controller='MessageBoardController as mbc' ng-init='mbc.getMessages()'>
-      <button ng-click='mbc.logIn()'>Log In</button>
+      <div>
+        <input type="text" placeholder="username" ng-model='mbc.usernameLogin'>
+        <input type="password" placeholder="password" ng-model='mbc.passwordLogin'>
+        <button ng-click='mbc.logIn()'>Log In</button>
+      </div>
       <div>
         <input type="text" placeholder="username" ng-model='mbc.usernameRegister'>
         <input type="password" placeholder="password" ng-model='mbc.passwordRegister'>

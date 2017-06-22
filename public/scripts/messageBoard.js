@@ -13,7 +13,14 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
 
   vm.logIn = function(){
     console.log( 'in controller logIn' );
-    MessageBoardService.sendLogIn();
+    var creds = {
+      username: vm.usernameLogin,
+      password: vm.passwordLogin
+    };
+    MessageBoardService.sendLogIn().then( function(){
+      vm.usernameLogin = '';
+      vm.passwordLogin = '';
+    });
   };
 
   vm.logOut = function(){
