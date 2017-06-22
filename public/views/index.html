@@ -10,23 +10,31 @@
   <body ng-app='myApp'>
     <h1>Omega Message Board</h1>
     <div ng-controller='MessageBoardController as mbc' ng-init='mbc.getMessages()'>
-      <div>
-        <input type="text" placeholder="username" ng-model='mbc.usernameLogin'>
-        <input type="password" placeholder="password" ng-model='mbc.passwordLogin'>
-        <button ng-click='mbc.logIn()'>Log In</button>
+      <div ng-hide='mbc.hasName'>
+        <div ng-show='mbc.loggingIn'>
+          <input type="text" placeholder="username" ng-model='mbc.usernameLogin'>
+          <input type="password" placeholder="password" ng-model='mbc.passwordLogin'>
+          <button ng-click='mbc.logIn()'>Log In</button>
+          <p>
+              Don't have a login? <button ng-click='mbc.toggleLogin()'>Register</button>
+          </p>
+        </div>
       </div>
-      <div>
-        <input type="text" placeholder="username" ng-model='mbc.usernameRegister'>
-        <input type="password" placeholder="password" ng-model='mbc.passwordRegister'>
-        <button ng-click='mbc.register()'>Register</button>
+      <div ng-hide='mbc.hasName'>
+        <div ng-hide='mbc.loggingIn'>
+          <input type="text" placeholder="username" ng-model='mbc.usernameRegister'>
+          <input type="password" placeholder="password" ng-model='mbc.passwordRegister'>
+          <button ng-click='mbc.register()'>Register</button>
+          <p>
+              Already have a login? <button ng-click='mbc.toggleLogin()'>Login Now</button>
+          </p>
+        </div>
       </div>
       <div>
         <p ng-show='mbc.hasName'>
-          Logged in as: {{ mbc.name }} <button ng-click='mbc.logOut()'>Log Out</button>
-        </p>
-        <input type="text" ng-model='mbc.name' placeholder="name" ng-hide='mbc.hasName'>
+          Logged in as: {{ mbc.name }}
         <input type="text" ng-model='mbc.body' placeholder="message">
-        <button ng-click='mbc.sendMessage()'>Send</button>
+        <button ng-click='mbc.sendMessage()'>Send</button> <button ng-click='mbc.logOut()'>Log Out</button></p>
       </div>
       <div>
         <p ng-repeat='message in mbc.messages'>

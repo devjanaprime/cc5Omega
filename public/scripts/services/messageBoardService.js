@@ -20,6 +20,13 @@ myApp.service( 'MessageBoardService', function( $http ){
       data: credentials
     }).then( function( response ){
       console.log( 'back from login attempt:', response );
+      if( response.data == 'hooray' ){
+        console.log( 'logged in!' );
+        sv.loggedIn = true;
+      } // end logged in
+      else{
+        sv.loggedIn = false;
+      }
     }); // end http
   };
 

@@ -2,6 +2,7 @@ var myApp = angular.module( 'myApp', [] );
 
 myApp.controller( 'MessageBoardController', function( MessageBoardService ){
   var vm = this;
+  vm.loggingIn = true;
 
   vm.getMessages = function(){
     console.log( 'in controller, getMessages');
@@ -17,9 +18,14 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
       username: vm.usernameLogin,
       password: vm.passwordLogin
     };
-    MessageBoardService.sendLogIn().then( function(){
+    MessageBoardService.sendLogIn( creds ).then( function(){
+      // set name to what was used in login
+      vm.name = vm.usernameLogin;
+      // clear inputs
       vm.usernameLogin = '';
       vm.passwordLogin = '';
+      // use service's loggedIn to manipulate DOM
+      vm.hasName = MessageBoardService.loggedIn;
     });
   };
 
@@ -66,5 +72,8 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
       });
     } // end message exxists
   };
+  vm.toggleLogin = function(){
+    vm.loggingIn = !vm.loggingIn;
+  }; // end toggleLogin
 
 });
